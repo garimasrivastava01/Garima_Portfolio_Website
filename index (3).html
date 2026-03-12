@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Garima Srivastava — Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ivory:#faf8f5;
+  --cream:#f2ede6;
+  --paper:#e8e0d5;
+  --ink:#1a1815;
+  --ink2:#3d3830;
+  --muted:#7a7168;
+  --muted2:#b0a898;
+  --gold:#c9a84c;
+  --gold2:#e8c97a;
+  --gold-light:rgba(201,168,76,.12);
+  --teal:#2a6b6e;
+  --teal-light:rgba(42,107,110,.1);
+  --border:#ddd5c8;
+  --border2:rgba(201,168,76,.3);
+  --white:#ffffff;
+  --shadow:0 2px 24px rgba(26,24,21,.07);
+  --shadow2:0 8px 48px rgba(26,24,21,.1);
+}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;line-height:1.6}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:4px}
+
+/* ── TOP NAV ── */
+.topnav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(250,248,245,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5vw;display:flex;align-items:center;justify-content:space-between;height:64px;transition:box-shadow .3s}
+.topnav.scrolled{box-shadow:var(--shadow)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:.04em}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;font-weight:500;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--gold);transition:width .25s}
+.nav-links a:hover{color:var(--ink)}.nav-links a:hover::after{width:100%}
+.nav-cta{padding:.5rem 1.4rem;background:var(--ink);color:var(--ivory);font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:3px;transition:all .2s}
+.nav-cta:hover{background:var(--gold);color:var(--ink)}
+.nav-ham{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px}
+.nav-ham span{display:block;width:22px;height:1.5px;background:var(--ink);transition:all .3s}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 5vw 4rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg-circle{position:absolute;right:-10vw;top:50%;transform:translateY(-50%);width:55vw;height:55vw;border-radius:50%;background:radial-gradient(ellipse at center,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
+.hero-bg-line{position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);opacity:.6}
+.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 420px;gap:6rem;align-items:center;max-width:1300px;margin:0 auto;width:100%}
+.hero-tag{display:inline-flex;align-items:center;gap:.6rem;font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);background:var(--teal-light);border:1px solid rgba(42,107,110,.2);border-radius:2px;padding:.3rem .9rem;margin-bottom:2rem}
+.tag-dot{width:6px;height:6px;background:var(--teal);border-radius:50%;animation:pulse-teal 2s ease infinite}
+@keyframes pulse-teal{0%,100%{box-shadow:0 0 0 0 rgba(42,107,110,.4)}50%{box-shadow:0 0 0 6px rgba(42,107,110,0)}}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,6vw,6rem);line-height:1;font-weight:500;margin-bottom:1rem;letter-spacing:-.01em}
+.hero-h1 em{font-style:italic;color:var(--gold)}
+.hero-title-line{font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem;display:flex;align-items:center;gap:1rem}
+.hero-title-line::before{content:'';display:inline-block;width:32px;height:1px;background:var(--gold)}
+.hero-desc{font-size:1rem;line-height:1.9;color:var(--ink2);max-width:500px;margin-bottom:2.5rem}
+.hero-desc strong{color:var(--ink);font-weight:500}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
+.btn-primary{padding:.8rem 2.2rem;background:var(--ink);color:var(--ivory);font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:3px;transition:all .25s;border:1.5px solid var(--ink)}
+.btn-primary:hover{background:transparent;color:var(--ink)}
+.btn-outline{padding:.8rem 2.2rem;border:1.5px solid var(--border);color:var(--ink2);font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-radius:3px;transition:all .25s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{display:flex;gap:2.5rem}
+.hstat{border-left:2px solid var(--gold);padding-left:1rem}
+.hstat-n{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:600;color:var(--ink);line-height:1}
+.hstat-l{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.2rem}
+
+/* hero right card */
+.hero-card{background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:var(--shadow2)}
+.hcard-header{background:var(--ink);padding:1.5rem 2rem;display:flex;align-items:center;gap:1rem}
+.hcard-avatar{width:52px;height:52px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--ink);flex-shrink:0}
+.hcard-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--ivory)}
+.hcard-role{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);margin-top:.1rem}
+.hcard-body{padding:1.8rem 2rem}
+.hcard-row{display:flex;align-items:center;gap:.9rem;padding:.75rem 0;border-bottom:1px solid var(--cream)}
+.hcard-row:last-child{border-bottom:none}
+.hcard-ico{width:32px;height:32px;background:var(--gold-light);border:1px solid var(--border2);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hcard-ico svg{width:14px;height:14px;fill:var(--gold)}
+.hcard-lbl{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.1rem}
+.hcard-val{font-size:.85rem;color:var(--ink);font-weight:400}
+.hcard-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(42,107,110,.08);border:1px solid rgba(42,107,110,.2);border-radius:2px;padding:.28rem .7rem;font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-top:1rem}
+.hcard-badge-dot{width:5px;height:5px;background:var(--teal);border-radius:50%;animation:pulse-teal 2s ease infinite}
+
+/* ── SECTION BASE ── */
+section:not(#hero){padding:7rem 5vw;max-width:1300px;margin:0 auto;width:100%}
+.section-wrap{max-width:1300px;margin:0 auto;width:100%}
+.section-full{padding:7rem 5vw;background:var(--cream)}
+.section-full .section-wrap{max-width:1300px;margin:0 auto;width:100%}
+.s-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;display:flex;align-items:center;gap:.8rem}
+.s-eyebrow::before{content:'';display:inline-block;width:24px;height:1px;background:var(--gold)}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.4rem);font-weight:500;line-height:1;letter-spacing:-.01em;margin-bottom:.5rem}
+.s-title em{font-style:italic;color:var(--gold)}
+.s-subtitle{font-size:.95rem;color:var(--muted);max-width:500px;line-height:1.8;margin-top:.8rem}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:7rem;margin-top:4.5rem;align-items:start}
+.about-left{}
+.about-profile-card{background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:1.5rem}
+.apc-top{background:linear-gradient(135deg,var(--ink),#2d2a25);padding:2.5rem 2rem;text-align:center}
+.apc-avatar{width:80px;height:80px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--ink);margin:0 auto 1rem}
+.apc-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--ivory);font-weight:500}
+.apc-role{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);margin-top:.25rem}
+.apc-bottom{padding:1.5rem 2rem}
+.apc-item{display:flex;align-items:center;gap:.8rem;padding:.5rem 0;border-bottom:1px solid var(--cream);font-size:.83rem;color:var(--ink2)}
+.apc-item:last-child{border-bottom:none}
+.apc-item svg{width:14px;height:14px;fill:var(--gold);flex-shrink:0}
+.about-quicklinks{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.aql{display:flex;align-items:center;gap:.6rem;padding:.7rem 1rem;background:var(--white);border:1px solid var(--border);border-radius:6px;text-decoration:none;color:var(--ink2);font-size:.78rem;font-weight:500;transition:all .2s}
+.aql:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-light)}
+.aql svg{width:12px;height:12px;fill:currentColor}
+
+.about-right{}
+.about-text p{font-size:.97rem;line-height:2;color:var(--ink2);margin-bottom:1.4rem}
+.about-text p strong{color:var(--ink);font-weight:500}
+.about-pullquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;line-height:1.55;color:var(--ink);border-left:3px solid var(--gold);padding:1rem 0 1rem 1.8rem;margin:2rem 0;background:var(--gold-light);border-radius:0 6px 6px 0;padding-right:1.5rem}
+.about-tools{margin-top:2rem}
+.about-tools-title{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.tools-grid{display:flex;flex-wrap:wrap;gap:.45rem}
+.tool-chip{padding:.32rem .85rem;background:var(--white);border:1px solid var(--border);border-radius:3px;font-size:.73rem;color:var(--ink2);transition:all .2s;font-weight:400}
+.tool-chip:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-light)}
+
+/* ── SKILLS ── */
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;margin-top:4.5rem}
+.skill-category{margin-bottom:2.5rem}
+.skill-cat-title{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:1.4rem;padding-bottom:.6rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.6rem}
+.skill-cat-title::before{content:'';width:6px;height:6px;background:var(--teal);border-radius:50%;flex-shrink:0}
+.skill-bar{margin-bottom:1.1rem}
+.sb-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.sb-name{font-size:.85rem;color:var(--ink2);font-weight:400}
+.sb-pct{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--gold)}
+.sb-track{height:3px;background:var(--paper);border-radius:2px;overflow:hidden}
+.sb-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1);border-radius:2px}
+
+.skills-boxes{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.5rem}
+.skill-box{padding:.7rem 1rem;background:var(--white);border:1px solid var(--border);border-radius:6px;font-size:.78rem;color:var(--ink2);transition:all .2s;display:flex;align-items:center;gap:.6rem}
+.skill-box::before{content:'';width:5px;height:5px;background:var(--gold);border-radius:50%;flex-shrink:0}
+.skill-box:hover{border-color:var(--gold);color:var(--ink);background:var(--gold-light);transform:translateX(4px)}
+
+/* ── CERTIFICATIONS ── */
+.certs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
+.cert-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.5rem;transition:all .3s;position:relative;overflow:hidden}
+.cert-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.cert-card:hover{border-color:var(--border2);box-shadow:var(--shadow);transform:translateY(-4px)}
+.cert-card:hover::before{transform:scaleX(1)}
+.cert-ico{font-size:1.5rem;margin-bottom:.8rem}
+.cert-name{font-size:.88rem;font-weight:500;color:var(--ink);margin-bottom:.3rem;line-height:1.3}
+.cert-issuer{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.cert-year{font-size:.72rem;color:var(--muted);margin-top:.4rem}
+
+/* ── PROJECTS ── */
+.projects-list{display:flex;flex-direction:column;gap:1.2rem;margin-top:4.5rem}
+.project-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:2.2rem 2.5rem;display:grid;grid-template-columns:56px 1fr auto;gap:2rem;align-items:start;transition:all .3s;position:relative;overflow:hidden}
+.project-card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold),var(--gold2));transform:scaleY(0);transform-origin:bottom;transition:transform .4s}
+.project-card:hover{border-color:var(--border2);box-shadow:var(--shadow2);transform:translateY(-3px)}
+.project-card:hover::after{transform:scaleY(1)}
+.proj-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:2.8rem;color:var(--gold);opacity:.4;line-height:1;margin-top:.1rem}
+.proj-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;color:var(--ink);margin-bottom:.6rem;line-height:1.1}
+.proj-title span{color:var(--gold)}
+.proj-desc{font-size:.87rem;line-height:1.85;color:var(--muted);margin-bottom:1rem;max-width:560px}
+.proj-features{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.9rem}
+.proj-feat{font-size:.68rem;padding:.25rem .7rem;background:var(--teal-light);border:1px solid rgba(42,107,110,.2);border-radius:2px;color:var(--teal);letter-spacing:.04em}
+.proj-stack{display:flex;flex-wrap:wrap;gap:.3rem}
+.proj-tech{font-family:'JetBrains Mono',monospace;font-size:.62rem;padding:.2rem .65rem;background:var(--gold-light);border:1px solid var(--border2);border-radius:2px;color:var(--gold)}
+.proj-side{display:flex;flex-direction:column;align-items:flex-end;gap:.8rem;padding-top:.2rem}
+.proj-emoji{font-size:2.2rem}
+.gh-link{display:flex;align-items:center;gap:.5rem;padding:.48rem 1.1rem;border:1px solid var(--border);border-radius:4px;color:var(--ink2);text-decoration:none;font-size:.68rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;white-space:nowrap}
+.gh-link:hover{border-color:var(--ink);background:var(--ink);color:var(--ivory)}
+.gh-link svg{width:11px;height:11px;fill:currentColor}
+
+/* ── EDUCATION ── */
+.edu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:4rem}
+.edu-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:2rem;transition:all .3s;position:relative;overflow:hidden}
+.edu-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.edu-card:hover{border-color:var(--border2);box-shadow:var(--shadow);transform:translateY(-5px)}
+.edu-card:hover::after{transform:scaleX(1)}
+.edu-ico{font-size:1.8rem;margin-bottom:1rem}
+.edu-period{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.edu-degree{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:500;color:var(--ink);margin-bottom:.4rem;line-height:1.25}
+.edu-desc{font-size:.8rem;color:var(--muted);line-height:1.75}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;margin-top:4.5rem;align-items:start}
+.contact-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,4.5vw,4.2rem);font-weight:500;line-height:.97;margin-bottom:1.2rem}
+.contact-heading em{font-style:italic;color:var(--gold)}
+.contact-desc{font-size:.95rem;line-height:1.9;color:var(--muted);margin-bottom:2rem}
+.contact-links{display:flex;flex-direction:column;gap:.6rem;margin-bottom:2.5rem}
+.c-link{display:flex;align-items:center;gap:.9rem;padding:.85rem 1.2rem;background:var(--white);border:1px solid var(--border);border-radius:6px;text-decoration:none;color:var(--ink2);font-size:.85rem;transition:all .2s;font-weight:400}
+.c-link:hover{border-color:var(--gold);background:var(--gold-light);color:var(--ink)}
+.c-link-ico{width:34px;height:34px;background:var(--gold-light);border:1px solid var(--border2);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.c-link-ico svg{width:14px;height:14px;fill:var(--gold)}
+.c-link-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;line-height:1}
+.c-link-val{font-size:.83rem;color:var(--ink);margin-top:.15rem;display:block}
+
+/* contact form */
+.contact-form{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:2.5rem;box-shadow:var(--shadow)}
+.form-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:var(--ink);margin-bottom:.3rem}
+.form-subtitle{font-size:.78rem;color:var(--muted);margin-bottom:1.8rem}
+.form-group{margin-bottom:1.2rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.4rem}
+.form-input,.form-textarea{width:100%;background:var(--ivory);border:1px solid var(--border);border-radius:6px;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:.88rem;padding:.8rem 1rem;outline:none;resize:none;transition:all .2s;-webkit-appearance:none}
+.form-input:focus,.form-textarea:focus{border-color:var(--gold);background:var(--white);box-shadow:0 0 0 3px rgba(201,168,76,.1)}
+.form-input::placeholder,.form-textarea::placeholder{color:var(--muted2)}
+.form-textarea{min-height:100px}
+.form-btn{width:100%;padding:.9rem;background:var(--ink);color:var(--ivory);font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--ink);border-radius:6px;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:.6rem}
+.form-btn:hover{background:transparent;color:var(--ink)}
+.form-btn svg{width:13px;height:13px;fill:currentColor}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);padding:2.5rem 5vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.2rem;margin-top:0}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--ivory)}
+.footer-brand span{color:var(--gold)}
+.footer-copy{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.1em;color:var(--muted2)}
+.footer-links{display:flex;gap:2rem}
+.footer-links a{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--gold)}
+
+/* ── REVEAL ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
+.reveal.from-left{transform:translateX(-28px)}
+.reveal.from-right{transform:translateX(28px)}
+.reveal.visible{opacity:1!important;transform:none!important}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+
+/* ── MOBILE ── */
+@media(max-width:960px){
+  .topnav{padding:0 5vw}
+  .nav-links,.nav-cta{display:none}
+  .nav-ham{display:flex}
+  .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:1.5rem 5vw;z-index:800;flex-direction:column;gap:1rem}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-size:.9rem;color:var(--ink2);text-decoration:none;padding:.4rem 0;border-bottom:1px solid var(--cream)}
+  #hero{padding:80px 5vw 3rem}
+  .hero-inner{grid-template-columns:1fr;gap:3rem}
+  .hero-card{display:none}
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:3rem}
+  .certs-grid{grid-template-columns:1fr 1fr}
+  .edu-grid{grid-template-columns:1fr}
+  .project-card{grid-template-columns:44px 1fr;gap:1.2rem}
+  .proj-side{display:none}
+  .skills-layout{grid-template-columns:1fr;gap:3rem}
+  section:not(#hero){padding:5rem 5vw}
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .hero-stats{flex-direction:column;gap:1.2rem}
+  .certs-grid{grid-template-columns:1fr}
+  .about-quicklinks{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav" id="topnav">
+  <a href="#hero" class="nav-logo">Garima <span>Srivastava</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://www.linkedin.com/in/garima-srivastava-9b1b56382" target="_blank" class="nav-cta">Hire Me</a>
+  <button class="nav-ham" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#education">Education</a>
+  <a href="#contact">Contact</a>
+  <a href="https://www.linkedin.com/in/garima-srivastava-9b1b56382" target="_blank">Hire Me →</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-bg-line"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag reveal"><div class="tag-dot"></div>Open to Opportunities</div>
+      <h1 class="hero-h1 reveal reveal-delay-1">Garima<br/><em>Srivastava</em></h1>
+      <div class="hero-title-line reveal reveal-delay-2">Data Analyst &amp; Python Developer</div>
+      <p class="hero-desc reveal reveal-delay-2">
+        I turn raw data into <strong>clear, actionable insights</strong>. From web scraping and data pipelines to interactive dashboards and machine learning — I build data solutions that tell the story behind the numbers.
+      </p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+      <div class="hero-stats reveal reveal-delay-4">
+        <div class="hstat">
+          <div class="hstat-n" id="c1">0</div>
+          <div class="hstat-l">GitHub Commits</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n" id="c2">0</div>
+          <div class="hstat-l">Projects Built</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n" id="c3">0</div>
+          <div class="hstat-l">Technologies</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right reveal from-right reveal-delay-2">
+      <div class="hero-card">
+        <div class="hcard-header">
+          <div class="hcard-avatar">GS</div>
+          <div>
+            <div class="hcard-name">Garima Srivastava</div>
+            <div class="hcard-role">Data Analyst · Python Developer</div>
+          </div>
+        </div>
+        <div class="hcard-body">
+          <div class="hcard-row">
+            <div class="hcard-ico"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+            <div>
+              <span class="hcard-lbl">Location</span>
+              <span class="hcard-val">India</span>
+            </div>
+          </div>
+          <div class="hcard-row">
+            <div class="hcard-ico"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+            <div>
+              <span class="hcard-lbl">Email</span>
+              <span class="hcard-val">garimasrivastava0103@gmail.com</span>
+            </div>
+          </div>
+          <div class="hcard-row">
+            <div class="hcard-ico"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.27c-.97 0-1.75-.79-1.75-1.76s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.76-1.75 1.76zm13.5 11.27h-3v-5.6c0-1.34-.03-3.06-1.86-3.06-1.87 0-2.16 1.46-2.16 2.97v5.69h-3v-10h2.88v1.37h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59v5.6z"/></svg></div>
+            <div>
+              <span class="hcard-lbl">LinkedIn</span>
+              <span class="hcard-val">garima-srivastava</span>
+            </div>
+          </div>
+          <div class="hcard-row">
+            <div class="hcard-ico"><svg viewBox="0 0 24 24"><path d="M12 0c-6.63 0-12 5.37-12 12 0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.005 2.04.14 3 .4 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.21.7.82.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></div>
+            <div>
+              <span class="hcard-lbl">GitHub</span>
+              <span class="hcard-val">garimasrivastava01</span>
+            </div>
+          </div>
+          <div class="hcard-badge"><div class="hcard-badge-dot"></div>Available for Work</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="section-full">
+  <section id="about">
+    <div class="section-wrap">
+      <div class="s-eyebrow reveal">01 — About Me</div>
+      <h2 class="s-title reveal reveal-delay-1">Who I <em>Am</em></h2>
+      <div class="about-grid">
+        <div class="about-left">
+          <div class="about-profile-card reveal from-left">
+            <div class="apc-top">
+              <div class="apc-avatar">GS</div>
+              <div class="apc-name">Garima Srivastava</div>
+              <div class="apc-role">Data Analyst · Python Developer</div>
+            </div>
+            <div class="apc-bottom">
+              <div class="apc-item"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> India</div>
+              <div class="apc-item"><svg viewBox="0 0 24 24"><path d="M20 6H16V4c0-1.1-.9-2-2-2h-4C8.9 2 8 2.9 8 4v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4z"/></svg> B.A. — 2022–Present</div>
+              <div class="apc-item"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> 4 Live GitHub Projects</div>
+              <div class="apc-item"><svg viewBox="0 0 24 24"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg> 2022 — Present</div>
+            </div>
+          </div>
+          <div class="about-quicklinks reveal from-left reveal-delay-1">
+            <a href="https://github.com/garimasrivastava01" target="_blank" class="aql">
+              <svg viewBox="0 0 24 24"><path d="M12 0c-6.63 0-12 5.37-12 12 0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.005 2.04.14 3 .4 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.21.7.82.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub Profile
+            </a>
+            <a href="https://www.linkedin.com/in/garima-srivastava-9b1b56382" target="_blank" class="aql">
+              <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.27c-.97 0-1.75-.79-1.75-1.76s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.76-1.75 1.76zm13.5 11.27h-3v-5.6c0-1.34-.03-3.06-1.86-3.06-1.87 0-2.16 1.46-2.16 2.97v5.69h-3v-10h2.88v1.37h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59v5.6z"/></svg>
+              LinkedIn
+            </a>
+            <a href="mailto:garimasrivastava0103@gmail.com" class="aql">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              Send Email
+            </a>
+            <a href="tel:7839262845" class="aql">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              +91 78392 62845
+            </a>
+          </div>
+        </div>
+        <div class="about-right">
+          <div class="about-text reveal">
+            <p>I'm a <strong>self-driven Data Analyst and Python Developer</strong> who believes that data, when properly understood, can drive better decisions at every level. I combine formal academic learning with hands-on project experience to build real, impactful solutions.</p>
+            <p>My approach is practical: I start with the business question, then identify what data is needed, how to collect and clean it, and how to present insights in a way that's genuinely useful. From <strong>web scraping and pipeline automation</strong> to dashboards and predictive models — I enjoy the full journey.</p>
+            <p>Currently pursuing my <strong>Bachelor of Arts</strong> while simultaneously building a portfolio of GitHub projects across data cleaning, visualization, analytics, and automation. Actively expanding into machine learning and AI applications.</p>
+          </div>
+          <blockquote class="about-pullquote reveal reveal-delay-1">"Data is not just numbers — it's the story of what happened, and the map to what comes next."</blockquote>
+          <div class="about-tools reveal reveal-delay-2">
+            <div class="about-tools-title">Technologies &amp; Tools</div>
+            <div class="tools-grid">
+              <span class="tool-chip">Python</span><span class="tool-chip">Pandas</span><span class="tool-chip">NumPy</span><span class="tool-chip">Matplotlib</span><span class="tool-chip">Seaborn</span><span class="tool-chip">Plotly</span><span class="tool-chip">Flask</span><span class="tool-chip">BeautifulSoup</span><span class="tool-chip">Scrapy</span><span class="tool-chip">SQL</span><span class="tool-chip">Power BI</span><span class="tool-chip">Excel</span><span class="tool-chip">Git</span><span class="tool-chip">Scikit-learn</span><span class="tool-chip">Jupyter</span><span class="tool-chip">VS Code</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="s-eyebrow reveal">02 — Expertise</div>
+  <h2 class="s-title reveal reveal-delay-1">Skills &amp; <em>Proficiency</em></h2>
+  <p class="s-subtitle reveal reveal-delay-2">A hands-on skill set built through real projects and continuous self-learning.</p>
+  <div class="skills-layout">
+    <div>
+      <div class="skill-category reveal">
+        <div class="skill-cat-title">Programming &amp; Data</div>
+        <div class="skill-bar"><div class="sb-top"><span class="sb-name">Python</span><span class="sb-pct">90%</span></div><div class="sb-track"><div class="sb-fill" data-w="90"></div></div></div>
+        <div class="skill-bar"><div class="sb-top"><span class="sb-name">Pandas / NumPy</span><span class="sb-pct">85%</span></div><div class="sb-track"><div class="sb-fill" data-w="85"></div></div></div>
+        <div class="skill-bar"><div class="sb-top"><span class="sb-name">SQL</span><span class="sb-pct">78%</span></div><div class="sb-track"><div class="sb-fill" data-w="78"></div></div></div>
+        <div class="skill-bar"><div class="sb-top"><span class="sb-name">Web Scraping</span><span class="sb-pct">82%</span></div><div class="sb-track"><div class="sb-fill" data-w="82"></div></div></div>
+      </div>
+      <div class="skill-category reveal reveal-delay-1">
+        <div class="skill-cat-title">Visualization &amp; Reporting</div>
+        <div class="skill-bar"><div class="sb-top"><span class="sb-name">Matplotlib / Seaborn</span><span class="sb-pct">88%</span></div><div class="sb-track"><div class="sb-fill" data-w="88"></div></div></div>
+        <div class="skill-bar"><div class="sb-top"><span class="sb-name">Plotly / Dash</span><span class="sb-pct">75%</span></div><div class="sb-track"><div class="sb-fill" data-w="75"></div></div></div>
+        <div class="skill-bar"><div class="sb-top"><span class="sb-name">Power BI</span><span class="sb-pct">72%</span></div><div class="sb-track"><div class="sb-fill" data-w="72"></div></div></div>
+        <div class="skill-bar"><div class="sb-top"><span class="sb-name">Excel / Google Sheets</span><span class="sb-pct">85%</span></div><div class="sb-track"><div class="sb-fill" data-w="85"></div></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-category reveal reveal-delay-1">
+        <div class="skill-cat-title">Frameworks &amp; Tools</div>
+        <div class="skills-boxes">
+          <div class="skill-box">Flask</div>
+          <div class="skill-box">BeautifulSoup</div>
+          <div class="skill-box">Scrapy</div>
+          <div class="skill-box">Requests</div>
+          <div class="skill-box">Git / GitHub</div>
+          <div class="skill-box">Jupyter Notebook</div>
+          <div class="skill-box">VS Code</div>
+          <div class="skill-box">REST APIs</div>
+        </div>
+      </div>
+      <div class="skill-category reveal reveal-delay-2" style="margin-top:2rem">
+        <div class="skill-cat-title">Machine Learning (Learning)</div>
+        <div class="skills-boxes">
+          <div class="skill-box">Scikit-learn</div>
+          <div class="skill-box">Supervised Learning</div>
+          <div class="skill-box">NLP Basics</div>
+          <div class="skill-box">Feature Engineering</div>
+          <div class="skill-box">Neural Networks</div>
+          <div class="skill-box">Model Evaluation</div>
+        </div>
+      </div>
+      <div class="skill-category reveal reveal-delay-3" style="margin-top:2rem">
+        <div class="skill-cat-title">Soft Skills</div>
+        <div class="skills-boxes">
+          <div class="skill-box">Analytical Thinking</div>
+          <div class="skill-box">Problem Solving</div>
+          <div class="skill-box">Communication</div>
+          <div class="skill-box">Self-Learning</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<div class="section-full">
+  <div class="section-wrap">
+    <div class="s-eyebrow reveal">Credentials</div>
+    <h2 class="s-title reveal reveal-delay-1">Certifications &amp; <em>Courses</em></h2>
+    <div class="certs-grid">
+      <div class="cert-card reveal">
+        <div class="cert-ico">🐍</div>
+        <div class="cert-name">Python for Everybody</div>
+        <div class="cert-issuer">Coursera / University of Michigan</div>
+        <div class="cert-year">Data Structures, Web Data, Databases</div>
+      </div>
+      <div class="cert-card reveal reveal-delay-1">
+        <div class="cert-ico">📊</div>
+        <div class="cert-name">Data Analysis with Python</div>
+        <div class="cert-issuer">IBM / Coursera</div>
+        <div class="cert-year">Pandas, NumPy, Visualization</div>
+      </div>
+      <div class="cert-card reveal reveal-delay-2">
+        <div class="cert-ico">🤖</div>
+        <div class="cert-name">Machine Learning Fundamentals</div>
+        <div class="cert-issuer">Self-Learning Path</div>
+        <div class="cert-year">Scikit-learn, Supervised Models</div>
+      </div>
+      <div class="cert-card reveal reveal-delay-3">
+        <div class="cert-ico">🌐</div>
+        <div class="cert-name">Web Scraping with Python</div>
+        <div class="cert-issuer">Udemy</div>
+        <div class="cert-year">BeautifulSoup, Selenium, Scrapy</div>
+      </div>
+      <div class="cert-card reveal reveal-delay-1">
+        <div class="cert-ico">📈</div>
+        <div class="cert-name">Data Visualization</div>
+        <div class="cert-issuer">Self-Learning Path</div>
+        <div class="cert-year">Matplotlib, Seaborn, Plotly</div>
+      </div>
+      <div class="cert-card reveal reveal-delay-2">
+        <div class="cert-ico">🗄️</div>
+        <div class="cert-name">SQL for Data Science</div>
+        <div class="cert-issuer">Coursera</div>
+        <div class="cert-year">Queries, Joins, Aggregations</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="s-eyebrow reveal">03 — Work</div>
+  <h2 class="s-title reveal reveal-delay-1">Featured <em>Projects</em></h2>
+  <p class="s-subtitle reveal reveal-delay-2">Real-world data projects built from scratch — each one solving a genuine analytical challenge.</p>
+  <div class="projects-list">
+
+    <div class="project-card reveal">
+      <div class="proj-num">01</div>
+      <div>
+        <h3 class="proj-title">E-Commerce <span>Price Tracker</span></h3>
+        <p class="proj-desc">Automated Python scraper that tracks product prices across e-commerce platforms and sends email alerts when prices drop. Designed for real consumer benefit — no manual checking required.</p>
+        <div class="proj-features"><span class="proj-feat">Automated scraping</span><span class="proj-feat">Price change detection</span><span class="proj-feat">Email alerts</span><span class="proj-feat">Scheduled runs</span></div>
+        <div class="proj-stack"><span class="proj-tech">Python</span><span class="proj-tech">BeautifulSoup</span><span class="proj-tech">smtplib</span><span class="proj-tech">Schedule</span><span class="proj-tech">Pandas</span></div>
+      </div>
+      <div class="proj-side">
+        <div class="proj-emoji">🛒</div>
+        <a href="https://github.com/garimasrivastava01/e-commerce-price-tracker" target="_blank" class="gh-link"><svg viewBox="0 0 24 24"><path d="M12 0c-6.63 0-12 5.37-12 12 0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.005 2.04.14 3 .4 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.21.7.82.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="proj-num">02</div>
+      <div>
+        <h3 class="proj-title">Wikipedia <span>Data Scraper &amp; Explorer</span></h3>
+        <p class="proj-desc">A Flask web application that scrapes and structures Wikipedia data into an interactive, searchable explorer. Transforms unstructured encyclopedia content into queryable, well-organized datasets.</p>
+        <div class="proj-features"><span class="proj-feat">Live scraping</span><span class="proj-feat">Flask API</span><span class="proj-feat">Data structuring</span><span class="proj-feat">Search interface</span></div>
+        <div class="proj-stack"><span class="proj-tech">Python</span><span class="proj-tech">Flask</span><span class="proj-tech">BeautifulSoup</span><span class="proj-tech">Requests</span><span class="proj-tech">HTML/CSS</span></div>
+      </div>
+      <div class="proj-side">
+        <div class="proj-emoji">🔍</div>
+        <a href="https://github.com/garimasrivastava01/wikipedia-data-scraper" target="_blank" class="gh-link"><svg viewBox="0 0 24 24"><path d="M12 0c-6.63 0-12 5.37-12 12 0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.005 2.04.14 3 .4 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.21.7.82.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="proj-num">03</div>
+      <div>
+        <h3 class="proj-title">COVID-19 Data <span>Cleanup &amp; Visualization</span></h3>
+        <p class="proj-desc">End-to-end data pipeline for cleaning, normalizing, and visualizing COVID-19 datasets. Addresses the challenge of inconsistent global data formats to produce reliable, comparable insights.</p>
+        <div class="proj-features"><span class="proj-feat">Data cleaning pipeline</span><span class="proj-feat">Normalization</span><span class="proj-feat">Outlier detection</span><span class="proj-feat">Multi-format output</span></div>
+        <div class="proj-stack"><span class="proj-tech">Python</span><span class="proj-tech">Pandas</span><span class="proj-tech">NumPy</span><span class="proj-tech">Matplotlib</span></div>
+      </div>
+      <div class="proj-side">
+        <div class="proj-emoji">🧹</div>
+        <a href="https://github.com/garimasrivastava01/covid-19-data-cleanup-visualizationn" target="_blank" class="gh-link"><svg viewBox="0 0 24 24"><path d="M12 0c-6.63 0-12 5.37-12 12 0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.005 2.04.14 3 .4 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.21.7.82.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="proj-num">04</div>
+      <div>
+        <h3 class="proj-title">COVID-19 <span>Trend Analysis Dashboard</span></h3>
+        <p class="proj-desc">Time-series analytical dashboard visualizing global COVID-19 case trends, identifying surge patterns, and presenting multi-country comparative insights through clean, data-driven charting.</p>
+        <div class="proj-features"><span class="proj-feat">Time-series analysis</span><span class="proj-feat">Growth pattern detection</span><span class="proj-feat">Multi-country comparison</span><span class="proj-feat">Dashboard layout</span></div>
+        <div class="proj-stack"><span class="proj-tech">Python</span><span class="proj-tech">Pandas</span><span class="proj-tech">Matplotlib</span><span class="proj-tech">Seaborn</span></div>
+      </div>
+      <div class="proj-side">
+        <div class="proj-emoji">📊</div>
+        <a href="https://github.com/garimasrivastava01/COVID-19-Trend-Analysis-Dashboard" target="_blank" class="gh-link"><svg viewBox="0 0 24 24"><path d="M12 0c-6.63 0-12 5.37-12 12 0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.005 2.04.14 3 .4 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.21.7.82.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<div class="section-full">
+  <section id="education">
+    <div class="section-wrap">
+      <div class="s-eyebrow reveal">04 — Background</div>
+      <h2 class="s-title reveal reveal-delay-1">Education &amp; <em>Journey</em></h2>
+      <div class="edu-grid">
+        <div class="edu-card reveal">
+          <div class="edu-ico">🎓</div>
+          <div class="edu-period">2022 — Present</div>
+          <div class="edu-degree">B.A. (Bachelor of Arts)</div>
+          <p class="edu-desc">Pursuing formal academic education alongside intensive technical self-learning in data analysis, Python development, and AI/ML.</p>
+        </div>
+        <div class="edu-card reveal reveal-delay-1">
+          <div class="edu-ico">💻</div>
+          <div class="edu-period">Self-Learning Path</div>
+          <div class="edu-degree">Data Analysis &amp; Python Development</div>
+          <p class="edu-desc">Real-world learning through building — web scraping, data pipelines, Flask apps, and visualization. 4 live GitHub projects.</p>
+        </div>
+        <div class="edu-card reveal reveal-delay-2">
+          <div class="edu-ico">🤖</div>
+          <div class="edu-period">Currently Exploring</div>
+          <div class="edu-degree">AI &amp; Machine Learning</div>
+          <p class="edu-desc">Actively learning Scikit-learn, supervised learning, neural network fundamentals, and NLP — building toward intelligent data solutions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="s-eyebrow reveal">05 — Let's Connect</div>
+  <div class="contact-grid">
+    <div>
+      <h2 class="contact-heading reveal">Let's Build<br/><em>Something</em><br/>Together.</h2>
+      <p class="contact-desc reveal reveal-delay-1">Have a data project, a challenging analytical problem, or just want to connect? I'd love to hear from you.</p>
+      <div class="contact-links reveal reveal-delay-2">
+        <a href="mailto:garimasrivastava0103@gmail.com" class="c-link">
+          <div class="c-link-ico"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+          <div><span class="c-link-label">Email</span><span class="c-link-val">garimasrivastava0103@gmail.com</span></div>
+        </a>
+        <a href="https://www.linkedin.com/in/garima-srivastava-9b1b56382" target="_blank" class="c-link">
+          <div class="c-link-ico"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.27c-.97 0-1.75-.79-1.75-1.76s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.76-1.75 1.76zm13.5 11.27h-3v-5.6c0-1.34-.03-3.06-1.86-3.06-1.87 0-2.16 1.46-2.16 2.97v5.69h-3v-10h2.88v1.37h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59v5.6z"/></svg></div>
+          <div><span class="c-link-label">LinkedIn</span><span class="c-link-val">garima-srivastava-9b1b56382</span></div>
+        </a>
+        <a href="https://github.com/garimasrivastava01" target="_blank" class="c-link">
+          <div class="c-link-ico"><svg viewBox="0 0 24 24"><path d="M12 0c-6.63 0-12 5.37-12 12 0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.005 2.04.14 3 .4 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.21.7.82.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></div>
+          <div><span class="c-link-label">GitHub</span><span class="c-link-val">garimasrivastava01</span></div>
+        </a>
+        <a href="tel:7839262845" class="c-link">
+          <div class="c-link-ico"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+          <div><span class="c-link-label">Phone</span><span class="c-link-val">+91 78392 62845</span></div>
+        </a>
+      </div>
+    </div>
+    <div class="reveal from-right reveal-delay-2">
+      <div class="contact-form">
+        <div class="form-title">Send a Message</div>
+        <div class="form-subtitle">I typically respond within 24 hours.</div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">First Name</label><input class="form-input" type="text" placeholder="Your first name"/></div>
+          <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" type="text" placeholder="Your last name"/></div>
+        </div>
+        <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" type="email" placeholder="your@email.com"/></div>
+        <div class="form-group"><label class="form-label">Subject</label><input class="form-input" type="text" placeholder="What's this about?"/></div>
+        <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="Tell me about your project or opportunity..."></textarea></div>
+        <button class="form-btn" onclick="this.innerHTML='Message Sent ✓';this.style.background='var(--teal)';this.style.borderColor='var(--teal)';this.style.color='white'">Send Message <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Garima <span>Srivastava</span></div>
+  <div class="footer-copy">&copy; 2025 · Data Analyst &amp; Python Developer</div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('topnav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Hamburger menu
+const ham = document.getElementById('hamburger');
+const mob = document.getElementById('mobileMenu');
+ham.addEventListener('click', () => {
+  mob.classList.toggle('open');
+});
+mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
+
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Skill bars on scroll
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.querySelectorAll('.sb-fill').forEach(b => {
+        setTimeout(() => b.style.width = b.dataset.w + '%', 200);
+      });
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('.skills-layout').forEach(el => barObserver.observe(el));
+
+// Counter animation
+function animateCount(el, target, suffix = '') {
+  let n = 0;
+  const step = Math.ceil(target / 60);
+  const iv = setInterval(() => {
+    n = Math.min(n + step, target);
+    el.textContent = n + suffix;
+    if(n >= target) clearInterval(iv);
+  }, 20);
+}
+const heroObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      animateCount(document.getElementById('c1'), 288, '+');
+      animateCount(document.getElementById('c2'), 4, '');
+      animateCount(document.getElementById('c3'), 16, '+');
+      heroObserver.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+const heroStats = document.querySelector('.hero-stats');
+if(heroStats) heroObserver.observe(heroStats);
+</script>
+</body>
+</html>
